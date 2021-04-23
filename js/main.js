@@ -46,6 +46,7 @@ const printPost = postCollection => {
     Object.keys(postCollection).forEach(post => {
         let { img, title, tags, date } = postCollection[post]
         let postCard = `
+        <a href="post.html" class="insidePostLink">
         <div class="col-12 d-flex p-0 pl-md-2 pr-md-2 pb-2">
             <div class="card d-flex w-100">
                 <img src="${img}" class="card-img-top" style="max-height: 350px;">
@@ -77,8 +78,8 @@ const printPost = postCollection => {
             </div>    
         </div>`
 
-         $(".post-wrapper").prepend(postCard)
-        
+        $(".post-wrapper").prepend(postCard)
+
 
     })
 }
@@ -86,9 +87,75 @@ const printPost = postCollection => {
 
 
 
-$(".content-wrapper").on("click", ".test-button", () => {
-    console.log(" creando post ")
-})
+// const printinsidePost = insidepostCollection => {
+//     $(".insidepost-wrapper").children().remove()
+//     console.log("imprimiendo post")
+//     console.log(insidepostCollection)
+//     //$(".insidepost-wrapper").empty()
+//     Object.keys(insidepostCollection).forEach(insidepost => {
+//         let { img, title, tags, date, content } = insidepostCollection[insidepost]
+//         let insidepostCard = `
+//         <a href="post.html">
+//         <div class="col-12 d-flex p-0 p-md-2">
+//             <div class="card d-flex w-100">
+//                 <img src="${img}" class="card-img-top" style="max-height: 350px;">
+//                 <div class="card-body">
+//                     <h5 class="card-title pl-5" style="font-size: 2rem;"><b>${title}</b></h5>
+//                     <p class="card-text gray-text pl-5" style="font-size: 0.9rem;"><span class="tag-button bg-danger">#Javascript</span> <span class="tag-button bg-dark">${tags}</span> <span class="tag-button bg-success">#Technology</span> <span class="tag-button bg-warning">#JS</span></p>
+//                     <div class="media mb-2">
+//                         <img src="https://picsum.photos/seed/picsum/200/300" class="mr-2" alt="Generic placeholder image" style="width: 35px; height: 35px; border-radius: 50%;">
+//                         <div class="media-body">
+//                             <span style=" font-size: 0.8rem;; margin-bottom: 4px;"><b>Yogini Bende</b></span>
+//                             <span class="gray-text" style=" font-size: 0.7rem;  margin-bottom: 5px;">${date}</span>
+//                             <p class="mt-5 d-flex text-justify">${content}</p>
+//                             <img src="${img}" class="card-img-top" style="max-height: 350px;">
+
+//                             <p class="mt-5 d-flex text-justify">
+//                                 Hello folks,
+
+//                                 In my last article, I explained how you can get started with Tailwind and React by creating a simple login form. In that, we started with a bare minimum form structure. In this article, let's work on the same login form and implement responsiveness.
+
+//                                 Before we get started, this was the form which we developed earlier -
+//                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ut iusto officia excepturi animi illum suscipit, obcaecati tempore eum similique aliquid inventore perferendis corrupti consectetur autem. Voluptas, beatae? Fugiat vitae adipisci dolorum distinctio rem laborum assumenda modi nesciunt quasi ab odit enim voluptatem amet non nobis officiis, vero, unde velit veniam veritatis quibusdam corrupti doloremque? Praesentium, eius id minima aut voluptate, voluptates tenetur voluptatem possimus fugiat iure mollitia sit quaerat laborum quisquam velit tempora voluptatum dolores unde. Voluptates debitis dolores molestias exercitationem, veritatis assumenda pariatur aut quaerat fugit voluptatum, earum autem perspiciatis nobis quo sit sunt cupiditate, adipisci temporibus ex ab explicabo itaque iste expedita. Voluptatem autem, accusantium voluptas quam beatae temporibus perspiciatis commodi maxime molestias quae nostrum officiis delectus inventore neque sed! Ducimus dicta itaque eaque pariatur adipisci sit odio cumque repellendus iure sed dolore doloremque laudantium facere, modi molestias, hic nemo dignissimos maxime repellat numquam nulla dolores rerum?
+//                             </p>
+//                             <img src="https://picsum.photos/800/352" class="card-img-top" style="max-height: 350px;">
+
+//                             <p class="mt-5 d-flex text-justify">
+//                                 Hello folks,
+
+//                                 In my last article, I explained how you can get started with Tailwind and React by creating a simple login form. In that, we started with a bare minimum form structure. In this article, let's work on the same login form and implement responsiveness.
+
+//                                 Before we get started, this was the form which we developed earlier -
+//                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ut iusto officia excepturi animi illum suscipit, obcaecati tempore eum similique aliquid inventore perferendis corrupti consectetur autem. Voluptas, beatae? Fugiat vitae adipisci dolorum distinctio rem laborum assumenda modi nesciunt quasi ab odit enim voluptatem amet non nobis officiis, vero, unde velit veniam veritatis quibusdam corrupti doloremque? Praesentium, eius id minima aut voluptate, voluptates tenetur voluptatem possimus fugiat iure mollitia sit quaerat laborum quisquam velit tempora voluptatum dolores unde. Voluptates debitis dolores molestias exercitationem, veritatis assumenda pariatur aut quaerat fugit voluptatum, earum autem perspiciatis nobis quo sit sunt cupiditate, adipisci temporibus ex ab explicabo itaque iste expedita. Voluptatem autem, accusantium voluptas quam beatae temporibus perspiciatis commodi maxime molestias quae nostrum officiis delectus inventore neque sed! Ducimus dicta itaque eaque pariatur adipisci sit odio cumque repellendus iure sed dolore doloremque laudantium facere, modi molestias, hic nemo dignissimos maxime repellat numquam nulla dolores rerum?
+//                             </p>
+//                             <img src="https://picsum.photos/800/354" class="card-img-top" style="max-height: 350px;">
+
+//                             // <p class="mt-5 d-flex text-justify">
+//                             //     Hello folks,
+
+//                             //     In my last article, I explained how you can get started with Tailwind and React by creating a simple login form. In that, we started with a bare minimum form structure. In this article, let's work on the same login form and implement responsiveness.
+
+//                             //     Before we get started, this was the form which we developed earlier -
+//                             //     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ut iusto officia excepturi animi illum suscipit, obcaecati tempore eum similique aliquid inventore perferendis corrupti consectetur autem. Voluptas, beatae? Fugiat vitae adipisci dolorum distinctio rem laborum assumenda modi nesciunt quasi ab odit enim voluptatem amet non nobis officiis, vero, unde velit veniam veritatis quibusdam corrupti doloremque? Praesentium, eius id minima aut voluptate, voluptates tenetur voluptatem possimus fugiat iure mollitia sit quaerat laborum quisquam velit tempora voluptatum dolores unde. Voluptates debitis dolores molestias exercitationem, veritatis assumenda pariatur aut quaerat fugit voluptatum, earum autem perspiciatis nobis quo sit sunt cupiditate, adipisci temporibus ex ab explicabo itaque iste expedita. Voluptatem autem, accusantium voluptas quam beatae temporibus perspiciatis commodi maxime molestias quae nostrum officiis delectus inventore neque sed! Ducimus dicta itaque eaque pariatur adipisci sit odio cumque repellendus iure sed dolore doloremque laudantium facere, modi molestias, hic nemo dignissimos maxime repellat numquam nulla dolores rerum?
+//                             // </p>
+//                             // <img src="https://picsum.photos/800/349" class="card-img-top" style="max-height: 350px;">
+                                   
+//                         </div>
+//                     </div>
+//                 </div>     
+//             </div>    
+//         </div>`
+
+//         $(".insidepost-wrapper").prepend(insidepostCard)
+//     })
+// }
+
+
+
+
+// $(".content-wrapper").on("click", ".test-button", () => {
+//     console.log(" creando post ")
+// })
 
 
 
@@ -130,6 +197,7 @@ const getAllPost = () => {
         success: response => {
             console.log(response)
             printPost(response)
+            //printinsidePost(response)
         },
         error: error => {
             console.log(error)
@@ -149,6 +217,16 @@ $(".content-wrapper").on("click", ".save-post", () => {
     //loadView("index.html")
     window.location.assign("../index.html")
 })
+// $(".insidepost-wrapper").on("click", ".insidePostLink", () => {
+//     getAllPost()
+//     //getAllPost()
+//     // setTimeout( () => {
+//     //     window.open("index.html")
+//     // },3000)
+
+//     //loadView("index.html")
+//     window.location.assign("../post.html")
+// })
 
 getAllPost()
 /*Fin*/
