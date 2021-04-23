@@ -1,0 +1,57 @@
+<nav class="d-flex w-100">
+    <div class=" lefthead w-100 d-flex a-items-center bgcolor">
+        <a title="link" class="link  mr-20" id="logo-nav-img" href="index.html" style="margin-left: 140px;">
+            <img src="assets/icons/devIcon.svg" alt="link" style="height: 50px;">
+        </a>
+        <label style=" margin-top: 10px; font-size: 1rem ; "><b>Write a new post</b> </label>
+        <!-- <input style="width: 300px;" id="search-bar" type="text" placeholder="Search.."> -->
+    </div>
+    <div class=" righthead w-50 d-flex a-items-center jc-flex-end bgcolor" id="profile-img">
+        <!-- <button class="m-sides-10" id="search-button">Write a post</button> 
+        <i class="fas fa-search mr-20" id="search-icon"></i>
+        <img src="assets/icons/notifications.svg" class="mr-20" alt="">
+        <i class="far fa-bell mr-20"></i>
+        <img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; ">
+         -->
+
+    </div>
+</nav>
+<div class="" style=" margin-left: 14%; margin-top: 10px; height: 693px; width: 600px;">
+    <form action="" class="p-5 bgcolor2 post-form" style="height: 600px; width: 810px; margin-right: auto; ">
+
+        <!-- <div class="form-group"><input type="text" class="form-control" name="name" placeholder="New post title here..."
+                style="height: 80px; border-color: white; font-size: 50px; font-weight: bold; font-family:-apple-system, 
+                BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        </div> -->
+        <textarea name="title" id="" cols="25" rows="1" placeholder="New post title here..."
+            style="border-color: white; font-size: 50px; font-weight: bold; font-family:-apple-system, 
+            BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; outline:none;"></textarea>
+
+        <!-- <div class="form-group"><input type="text" class="form-control" name="description"
+                placeholder="Add up to 4 tags..."></div> -->
+        <textarea name="tags" id="" cols="100" rows="1" placeholder="Add up to 4 tags..."
+            style="margin-top: 10px; border-color: white;font-size: 15px; font-family:-apple-system, 
+                BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; outline:none;"></textarea>
+
+
+
+        <!-- <div class="form-group"><label for="">Foto</label><input type="file" class="form-control" name="picture"></div> -->
+        <textarea name="img" id="" cols="100" rows="1" placeholder="Add link image"
+            style="margin-top: 20px; border-color: white;font-size: 15px; font-family:-apple-system, 
+                BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; outline:none;"></textarea>
+
+
+
+        <textarea name="content" id="" cols="70" rows="8" placeholder="Write your post content here..."
+            style=" margin-top: 30px; border-color: white; font-size: 18px; font-family:monospace; outline: none;"></textarea>
+
+        <div><label for="start">Date</label></div>
+        <input type="date" id="start" name="date"value="dd/mm/yy"min="2010-01-01" max="2025-12-31">
+
+
+    </form>
+    <button type="button" class="btn btn-primary save-post"
+        style=" width: 85px; margin-top: 20px; font-weight: bold;">Publish</button>
+
+
+</div>
