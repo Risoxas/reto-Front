@@ -27,6 +27,19 @@ let commentCollection = {
     }
 }
 
+let commentHTML =  `
+<li class="list-group-item">
+    <div class="comment-box">
+        <h3><span>User: Juan</span></h3>
+        <p>Texto</p>
+        <p class="text-right text-muted">
+            <span class="date">Date</span>
+            <span class="time">time</span>
+        </p>
+    </div>
+</li>
+`
+
 // let completeCommentData = keysArray.reduce((accum, current) => { 
 //     let postId = Date.now()
     
@@ -39,22 +52,40 @@ let commentCollection = {
 //     return {...accum, [current]: commentValue}
 // },{})
 
-
 const addComment = event => {
-    console.log(event)
     let text = $(event.target).prev().val()
-    let postId = "1215"
+    let postId = postObject.id
     let commentKey = $(event.target).data('comment-key')
 
     let commentObject = {text, postId}
-    console.log(commentObject)
 
-    // completeCommentData[commentKey].commentCollection.push(commentObject)
+    completeCommentData[commentKey].commentCollection.push(commentObject)
     // console.log(completeCommentData)
+    printcomment(commentObject)
+    
 }
 
 
 $('.add-comment').click( addComment )
+
+const printComment = comment => {
+    let commentHTML =  `
+<li class="list-group-item">
+    <div class="comment-box">
+        <h3><span>User: Juan</span></h3>
+        <p>Texto</p>
+        <p class="text-right text-muted">
+            <span class="date">Date</span>
+            <span class="time">time</span>
+        </p>
+    </div>
+</li>
+`
+$(`#${comment.postId}`).append(commentHTML)
+
+}
+
+const printPost
 
 /*Fin*/
 /*Seccion Mario */
