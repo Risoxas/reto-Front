@@ -18,6 +18,7 @@ getPostData = ( ) => {
 }
 
 getPostData()
+console.log(postData.id)
 $("#detail-img").attr("src",postData.img)
 $("#detail-title").text(postData.title)
 $("#detail-tags").text(postData.tags)

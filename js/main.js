@@ -161,3 +161,36 @@ $("#search-bar").on('keyup', function() {
 
 /*Fin---*/
 
+const addComment = event => {
+    let text = $('#text-area').val()
+    let postId = postData.id
+    let commentId = Date.now()
+    let commentKey = $(event.target).data('comment-key')
+    let today = new Date()
+    let date = today.toLocaleString('default',{month:'long'}) + today.getDate()
+    let commentObject = {text, postId, date, commentId}
+    postData = {...postData, commentObject}
+    console.log(postData)
+    // completeCommentData[commentKey].commentCollection.push(commentObject)
+    // console.log(completeCommentData)
+    printComment(commentObject)
+    
+}
+
+$('.add-comment').click( addComment )
+
+const printComment = comment => {
+    let commentHTML =  `
+<li class="list-group-item w-100">
+    <div class="comment-box">
+        <h3><span><img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; "></span><span class = "mx-2">User: Juan</span><span class="date" style="font-size:70%">${comment.date}</span></h3>
+        <p>${comment.text}</p>
+        <p class="text-right text-muted">
+
+        </p>
+    </div>
+</li>
+`
+$(`#comment-container`).append(commentHTML)
+
+}

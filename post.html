@@ -106,11 +106,10 @@
     
                         
                         
-                        <a href="post.html">
                             <div class="col-12 d-flex p-0 p-md-2">
-                                <div class="card d-flex w-100">
+                                <div class="card d-flex w-100" >
                                     <img src="" class="card-img-top img-fluid" style="max-height: 350px;" id="detail-img">
-                                    <div class="card-body">
+                                    <div class="card-body" id="detail-id">
                                     
                                             
                                         
@@ -131,6 +130,7 @@
                                                     Before we get started, this was the form which we developed earlier -
                                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ut iusto officia excepturi animi illum suscipit, obcaecati tempore eum similique aliquid inventore perferendis corrupti consectetur autem. Voluptas, beatae? Fugiat vitae adipisci dolorum distinctio rem laborum assumenda modi nesciunt quasi ab odit enim voluptatem amet non nobis officiis, vero, unde velit veniam veritatis quibusdam corrupti doloremque? Praesentium, eius id minima aut voluptate, voluptates tenetur voluptatem possimus fugiat iure mollitia sit quaerat laborum quisquam velit tempora voluptatum dolores unde. Voluptates debitis dolores molestias exercitationem, veritatis assumenda pariatur aut quaerat fugit voluptatum, earum autem perspiciatis nobis quo sit sunt cupiditate, adipisci temporibus ex ab explicabo itaque iste expedita. Voluptatem autem, accusantium voluptas quam beatae temporibus perspiciatis commodi maxime molestias quae nostrum officiis delectus inventore neque sed! Ducimus dicta itaque eaque pariatur adipisci sit odio cumque repellendus iure sed dolore doloremque laudantium facere, modi molestias, hic nemo dignissimos maxime repellat numquam nulla dolores rerum?
                                                 </p>
+                                                <div id="detail-id"></div>
                                                 <img src="https://picsum.photos/800/351" class="card-img-top" style="max-height: 350px;">
     
                                                 <p class="mt-5 d-flex text-justify">
@@ -163,17 +163,24 @@
                                                 </p>
                                                 <img src="https://picsum.photos/800/349" class="card-img-top" style="max-height: 350px;">
                                                 
-                                               
                                                 
                                             </div>
                                         </div>
     
                                     </div>     
                                 </div>    
-                            </div>
-                        </a>
+                            </div> 
     
                         <!--END CARDS-->
+                    </div>
+                    <div class="container col-12 d-flex justify-content-center mb-3 comment-section mt-3 row" id="comment-container">
+                        <form action="" id="newcomment" style="height: 128px;" class="d-flex w-100">
+                            <span><img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; "></span>
+                            <div class="col-11">
+                                <textarea name="comment" id="text-area" class="w-100"></textarea>
+                                <button class="btn btn-primary add-comment" type="button">Submit</button>
+                            </div>
+                        </form>
                     </div>
     
                 </main>
