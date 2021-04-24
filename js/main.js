@@ -46,7 +46,7 @@ const printPost = postCollection => {
     Object.keys(postCollection).forEach(post => {
         let { img, title, tags, date } = postCollection[post]
         let postCard = `
-        <a href="post.html" class="insidePostLink">
+        <a href="post.html?postKey=${post}" class="insidePostLink">
         <div class="col-12 d-flex p-0 pl-md-2 pr-md-2 pb-2">
             <div class="card d-flex w-100">
                 <img src="${img}" class="card-img-top" style="max-height: 350px;">
