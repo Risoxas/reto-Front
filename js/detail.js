@@ -19,4 +19,8 @@ getPostData = ( ) => {
 getPostData()
 console.log( )
 
+//$("#detail-img").text(postData.img)
 $("#detail-title").text(postData.title)
+$("#detail-tags").text(postData.tags)
+$("#detail-date").text(postData.date)
+$("#detail-content").text(postData.content)

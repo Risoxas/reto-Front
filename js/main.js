@@ -55,7 +55,7 @@ const printPost = postCollection => {
                         <div class="media mb-2">
                             <img src="https://picsum.photos/seed/picsum/200/300" class="mr-2" alt="Generic placeholder image" style="width: 35px; height: 35px; border-radius: 50%;">
                             <div class="media-body">
-                                <span style=" font-size: 0.8rem; display: block; margin-bottom: 4px;"><b>Yogini Bende</b></span>
+                                <span style=" font-size: 0.8rem; display: block; margin-bottom: 4px;"><b>Israel Salinas</b></span>
                                 <span class="gray-text" style=" font-size: 0.7rem; display: block; margin-bottom: 5px;">${date}</span>
                             </div>
                         </div>
