@@ -11,15 +11,14 @@ getPostData = ( ) => {
         success: response => {
             postData = response
             console.log( postData )
+
         },
         async:false
     })
 }
 
 getPostData()
-console.log( )
-
-//$("#detail-img").text(postData.img)
+$("#detail-img").attr("src",postData.img)
 $("#detail-title").text(postData.title)
 $("#detail-tags").text(postData.tags)
 $("#detail-date").text(postData.date)
