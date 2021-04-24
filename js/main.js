@@ -16,7 +16,6 @@ $('.test-button').click(event => {
 
 const loadView = (url, view) => {
     $('.content-wrapper').load(url, () => {
-        console.log(view)
         switch (view) {
             case "create-post":
                 // alert("cargando crear post")
@@ -35,8 +34,6 @@ const loadView = (url, view) => {
 
 const printPost = postCollection => {
     $(".post-wrapper").children().remove()
-    console.log("imprimiendo post")
-    console.log(postCollection)
     //$(".post-wrapper").empty()
     Object.keys(postCollection).forEach(post => {
         let { img, title, tags, date } = postCollection[post]
@@ -90,7 +87,6 @@ const getPostData = () => {
 
     })
     postObject = { ...postObject, id: new Date().getTime() }
-    console.log(postObject)
     savePost(postObject)
 }
 
@@ -109,13 +105,25 @@ const savePost = postData => {
     })
 }
 
+const updatePost = (key, element) => {
+    $.ajax({
+        method: "PATCH",
+        url: `https://devto-31446-default-rtdb.firebaseio.com/${key}.json`,
+        data: JSON.stringify(element),
+        success: response => {
+            console.log(response)
+        },
+        error: error => {
+            console.log(error)
+        }
+    })
+}
+
 const getAllPost = () => {
-    console.log("getting post")
     $.ajax({
         method: "GET",
         url: "https://devto-31446-default-rtdb.firebaseio.com/.json",
         success: response => {
-            console.log(response)
             postsCollection = response
             printPost(response)
             //printinsidePost(response)
@@ -144,53 +152,88 @@ getAllPost()
 
 /*Seccion Jav */
 
-$("#search-bar").on('keyup', function() {
+$("#search-bar").on('keyup', function () {
     let searchText = $(`#search-bar`).val().toLowerCase()
-    let result = Object.keys( postsCollection ).reduce( ( accum, current ) => {
+    let result = Object.keys(postsCollection).reduce((accum, current) => {
 
-        if( postsCollection[current].title.toLowerCase().includes(searchText)) {
-          accum = {...accum, [current]:postsCollection[current]}
+        if (postsCollection[current].title.toLowerCase().includes(searchText)) {
+            accum = { ...accum, [current]: postsCollection[current] }
 
         }
 
         return accum
-      },{})
+    }, {})
 
-    printPost (result)
+    printPost(result)
 })
 
 /*Fin---*/
+const printComment = comments => {
+    $(`#comment-wrapper`).children().remove()
+    for (data in comments) {
+        let object = comments[data]
+        let commentHTML = `
+        <li class="list-group-item w-100" id="${object.commentId}">
+            <div class="comment-box">
+                <h3>
+                    <span>
+                    <img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; ">
+                    </span>
+                    <span class = "mx-2"> Juan </span>
+                    <span class="date" style="font-size:60%">${object.date}</span>
+                    <button class="btn btn-danger btn-sm rounded-0 float-right delete-comment" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                </h3>
+                <p>${object.text}</p>
+                <p class="text-right text-muted">
+                </p>
+            </div>
+        </li>
+        `
+        $(`#comment-wrapper`).append(commentHTML)
 
-const addComment = event => {
+    }
+}
+
+const addComment = () => {
     let text = $('#text-area').val()
     let postId = postData.id
     let commentId = Date.now()
-    let commentKey = $(event.target).data('comment-key')
     let today = new Date()
-    let date = today.toLocaleString('default',{month:'long'}) + today.getDate()
-    let commentObject = {text, postId, date, commentId}
-    postData = {...postData, commentObject}
-    console.log(postData)
-    // completeCommentData[commentKey].commentCollection.push(commentObject)
-    // console.log(completeCommentData)
-    printComment(commentObject)
+    let date = today.toLocaleString('default', { month: 'long' }) + ' '+  today.getDate()
+    let commentObject = { text, postId, date, commentId }
+    let comments = { ...postData.comments }
+
+    let key = Object.keys(postsCollection).reduce((accum, current) => {
+        if(postsCollection[current].id === postId){
+            accum = current
+        }
+        return accum
+    }, 0)
+    postData = { ...postData, comments: { ...comments, [commentId]: commentObject } }
+    printComment(postData.comments)
+    updatePost(key, postData)
+
+    $('#text-area').val('')
+}
+
+const deleteComment = (event) => {
     
-}
+    identification= $(event.delegateTarget ).children().attr('id')
+    delete postData.comments[identification]
+    if(Object.keys(postData["comments"]).length === 0){
+        delete postData["comments"]
+    }
+    let key = Object.keys(postsCollection).reduce((accum, current) => {
+        if(postsCollection[current].id === postData.id){
+            return current
+        }
+    }, 0)
+    updatePost(key,postData)
 
-$('.add-comment').click( addComment )
-
-const printComment = comment => {
-    let commentHTML =  `
-<li class="list-group-item w-100">
-    <div class="comment-box">
-        <h3><span><img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; "></span><span class = "mx-2">User: Juan</span><span class="date" style="font-size:70%">${comment.date}</span></h3>
-        <p>${comment.text}</p>
-        <p class="text-right text-muted">
-
-        </p>
-    </div>
-</li>
-`
-$(`#comment-container`).append(commentHTML)
 
 }
+
+$('.add-comment').click(addComment)
+
+$('#comment-wrapper').on("click",'.delete-comment',deleteComment)
+
