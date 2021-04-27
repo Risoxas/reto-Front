@@ -146,6 +146,90 @@ $(".content-wrapper").on("click", ".save-post", () => {
 getAllPost()
 /*Fin*/
 /*Seccion Ivan */
+$(".filtersDates").on("click", '.week', () => {
+
+    const today = +new Date();
+    const oneWeekAgo = today - (7 * 24 * 60 * 60);
+    let result = Object.keys(postsCollection).reduce((accum, current) => {
+        if (new Date(postsCollection[current].date).getTime() > oneWeekAgo) {
+            accum = { ...accum, [current]: postsCollection[current] };
+
+        }
+        return accum;
+    }, {});
+
+    printPost(result);
+
+});
+
+
+$(".filtersDates").on("click", '.month', () => {
+
+    const today = +new Date();
+    console.log(today, "TODAY");
+    const oneMonthAgo = today - (30 * 24 * 60 * 60);
+    let result = Object.keys(postsCollection).reduce((accum, current) => {
+        if (new Date(postsCollection[current].date).getTime() > oneMonthAgo) {
+            accum = { ...accum, [current]: postsCollection[current] };
+        }
+        return accum;
+    }, {});
+
+    printPost(result);
+
+
+
+});
+
+$(".filtersDates").on("click", '.year', () => {
+
+    const today = +new Date();
+    const oneYearAgo = today - (365 * 24 * 60 * 60);
+    let result = Object.keys(postsCollection).reduce((accum, current) => {
+        if (new Date(postsCollection[current].date).getTime() > oneYearAgo) {
+            accum = { ...accum, [current]: postsCollection[current] };
+        }
+        return accum;
+    }, {});
+
+    printPost(result);
+
+
+});
+
+
+$(".filtersDates").on("click", '.infinity', () => {
+
+    let result = Object.keys(postsCollection).reduce((accum, current) => {
+        if (new Date(postsCollection[current].date).getTime()) {
+            accum = { ...accum, [current]: postsCollection[current] };
+
+        }
+        return accum;
+    }, {});
+
+    printPost(result);
+
+});
+
+
+
+
+$(".filterTags").on('click', (e) => {
+   
+    let searchText = e.target.classList[4];
+    console.log(searchText, "SEARCH TEXT");
+    let result = Object.keys(postsCollection).reduce((accum, current) => {
+
+        if (postsCollection[current].tags.toLowerCase().includes(searchText)) {
+            accum = { ...accum, [current]: postsCollection[current] };
+
+        }
+        return accum;
+    }, {});
+
+    printPost(result);
+});
 
 
 /*FIn*/
