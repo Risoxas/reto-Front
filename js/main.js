@@ -257,15 +257,13 @@ const printComment = comments => {
     for (data in comments) {
         let object = comments[data]
         let commentHTML = `
-        <li class="list-group-item w-100" id="${object.commentId}">
+        <li class="list-group-item w-100" >
             <div class="comment-box">
                 <h3>
-                    <span>
-                    <img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; ">
-                    </span>
+                    <span><img id="user-nav-img" class="b-radius-100 mr-20" src="assets/images/usuarioLogNav.webp" alt="" style="height: 40px; "></span>
                     <span class = "mx-2"> Juan </span>
                     <span class="date" style="font-size:60%">${object.date}</span>
-                    <button class="btn btn-danger btn-sm rounded-0 float-right delete-comment" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                    <button id="${object.commentId}" class="btn btn-danger btn-sm rounded-0 float-right delete-comment" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                 </h3>
                 <p>${object.text}</p>
                 <p class="text-right text-muted">
@@ -301,18 +299,18 @@ const addComment = () => {
 }
 
 const deleteComment = (event) => {
-    
-    identification= $(event.delegateTarget ).children().attr('id')
-    delete postData.comments[identification]
-    if(Object.keys(postData["comments"]).length === 0){
-        delete postData["comments"]
-    }
+    event.stopPropagation()
+    selectedComment = event.target.id
+    delete postData.comments[selectedComment]
     let key = Object.keys(postsCollection).reduce((accum, current) => {
         if(postsCollection[current].id === postData.id){
-            return current
+            accum = current
         }
+        return accum
+
     }, 0)
     updatePost(key,postData)
+    printComment(postData.comments)
 
 
 }

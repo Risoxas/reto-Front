@@ -65,6 +65,10 @@ a:hover {
   margin-left: 40px;
 }
 
+.ml-140 {
+  margin-left: 140px;
+}
+
 .mr-20 {
   margin-right: 20px;
 }
@@ -167,12 +171,12 @@ a:hover {
   margin-top: -25px;
 }
 
-/*header {
-  Tablet version
-  /*END Tablet version
-  /*Desktop version
-  /*END Desktop version
-}*/
+header {
+  /*Tablet version*/
+  /*END Tablet version*/
+  /*Desktop version*/
+  /*END Desktop version*/
+}
 
 header .collapse {
   position: fixed;
